@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | UltraChat</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(-45deg, #1e2e3f, #273647, #1f2a36);
+            background-size: 300% 300%;
+            animation: gradientBG 10s ease infinite;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: #ffffff;
+        }
+        .container {
+            display: flex;
+            background: rgba(120, 118, 118, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 60%;
+            max-width: 800px;
+            backdrop-filter: blur(10px);
+        }
+        .logo-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .logo-section img {
+            width: 120px;
+            margin-bottom: 10px;
+            border-radius: 40%;
+        }
+        .form-section {
+            flex: 2;
+        }
+        .input-container {
+            margin-bottom: 15px;
+            position: relative;
+        }
+        .input-container input, .input-container select {
+            width: 90%;
+            padding: 12px;
+            border-radius: 10px;
+            border: none;
+            outline: none;
+            background: rgba(255, 255, 255, 0.8);
+            font-size: 16px;
+            color: #333;
+            display: block;
+        }
+        .error-message {
+            color: red;
+            font-size: 14px;
+            margin-top: 5px;
+            display: none;
+        }
+        button {
+            width: 90%;
+            padding: 12px;
+            background: orange;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background: rgb(223, 163, 79);
+        }
+        .toggle-btn {
+            margin-top: 10px;
+            color: #ffffff;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .form-container {
+            display: none;
+        }
+        .active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo-section">
+            <img src="static/logo.png" alt="Logo">
+            <h2>OrgBot</h2>
+        </div>
+        <div class="form-section">
+            <h2 id="form-title">Welcome</h2>
+            <div id="login-form" class="form-container active">
+                <div class="input-container">
+                    <input type="email" id="email" placeholder="Enter Email" required>
+                    <p class="error-message" id="email-error">Email is required</p>
+                </div>
+                <div class="input-container">
+                    <input type="password" id="password" placeholder="Enter Password" required>
+                    <p class="error-message" id="password-error">Password is required</p>
+                </div>
+                <button onclick="loginUser()">Login</button>
+                <p class="toggle-btn" onclick="toggleForm()">Not registered? Register</p>
+            </div>
+            <div id="register-form" class="form-container">
+                <div class="input-container">
+                    <input type="text" id="name" placeholder="Enter Name" required>
+                </div>
+                <div class="input-container">
+                    <input type="email" id="reg-email" placeholder="Enter Email" required>
+                </div>
+                <div class="input-container">
+                    <input type="password" id="reg-password" placeholder="Enter Password" required>
+                </div>
+                <div class="input-container">
+                    <input type="password" id="confirm-password" placeholder="Confirm Password" required>
+                </div>
+                <div class="input-container">
+                    <input type="tel" id="phone" placeholder="Enter Phone Number" required>
+                </div>
+                <div class="input-container">
+                    <select id="role" required>
+                        <option value="">Select Role</option>
+                        <option value="user">User</option>
+                        <option value="employee">Employee</option>
+                    </select>
+                </div>
+                <button onclick="registerUser()">Register</button>
+                <p class="toggle-btn" onclick="toggleForm()">Already registered? Login</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleForm() {
+            document.getElementById('login-form').classList.toggle('active');
+            document.getElementById('register-form').classList.toggle('active');
+        }
+
+        function loginUser() {
+    let email = document.getElementById('email').value.trim();
+    let password = document.getElementById('password').value.trim();
+
+    fetch('/login', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({email, password})
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            window.location.href = '/bot';  // ✅ Always redirect to /bot
+        } else {
+            alert(data.message);
+        }
+    });
+}
+
+
+        function registerUser() {
+    let name = document.getElementById('name').value.trim();
+    let email = document.getElementById('reg-email').value.trim();
+    let password = document.getElementById('reg-password').value;
+    let confirmPassword = document.getElementById('confirm-password').value;
+    let phone = document.getElementById('phone').value;
+    let role = document.getElementById('role').value;
+
+    // 🚨 Validate fields before sending request
+    if (!name || !email || !password || !confirmPassword || !phone || !role) {
+        alert('All fields are required!');
+        return;
+    }
+    if (password !== confirmPassword) {
+        alert('Passwords do not match!');
+        return;
+    }
+
+    fetch('/register', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+            name,
+            email,
+            contact: phone,  // 🔄 Changed key to match backend
+            password,
+            confirm_password: confirmPassword,  // 🔄 Added confirm_password
+            user_type: role  // 🔄 Changed key to match backend
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert('Registration Successful!');
+            toggleForm();
+        } else {
+            alert(data.message);
+        }
+    });
+}
+    </script>
+</body>
+</html>

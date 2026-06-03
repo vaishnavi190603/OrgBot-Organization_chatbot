@@ -1,0 +1,79 @@
+[
+    
+        ["What are the admission requirements?", "The basic admission requirements include a completed application form, transcripts from previous educational institutions, a valid ID, and in some cases, entrance exam scores or personal statements. Please refer to our website for program-specific requirements."],
+        ["What is the deadline for applications?", "The application deadline varies by program. For most undergraduate programs, the fall semester application deadline is June 1, and for the spring semester, it’s November 1. Graduate program deadlines vary; please check our website or contact the admissions office for specific dates."],
+        ["How can I apply online?", "You can apply online by visiting our official website and navigating to the 'Admissions' section. From there, select 'Apply Now' and follow the instructions to complete the application form. Make sure to have all necessary documents ready for upload."],
+        ["What is the application fee?", "The application fee for undergraduate programs is $50, and for graduate programs, it is $70. Payment can be made online during the application process using a credit or debit card."],
+        ["Are there any scholarships available?", "Yes, we offer a variety of scholarships based on academic performance, financial need, and other criteria. Please visit the 'Scholarships' section on our website or contact our financial aid office to learn more about available scholarships and eligibility."],
+        ["What documents are required for international students?", "International students need to submit a completed application form, academic transcripts, a copy of their passport, proof of English proficiency (such as TOEFL or IELTS scores), and a financial statement. Additional documents may be required based on specific program requirements."],
+        ["Can I apply for admission if I have a gap year?", "Yes, applicants with gap years are welcome to apply. Please include any relevant experiences during your gap year in your application or personal statement. Some programs may ask for additional information regarding your gap year activities."],
+        ["What is the process for transferring credits from another institution?", "To transfer credits, please submit official transcripts from your previous institution(s) during the application process. Our admissions team will evaluate your transcripts to determine eligible transfer credits based on our credit transfer policies."],
+        ["How do I schedule a campus tour?", "To schedule a campus tour, please visit the 'Visit Us' page on our website and select a date and time that works for you. You can also contact our admissions office to arrange a personalized campus visit."],
+        ["What are the tuition fees for different programs?", "Tuition fees vary by program and academic level. Undergraduate programs generally cost $10,000 per year, while graduate programs start at $15,000 per year. For specific program fees, please refer to the 'Tuition and Fees' section on our website."],
+        ["Is there an entrance exam for admission?", "Some programs require entrance exams as part of the admission process. For example, the MBA program requires GMAT or GRE scores, while undergraduate programs may require SAT or ACT scores. Please check the specific requirements for your desired program."],
+        ["How do I check the status of my application?", "You can check your application status by logging into your applicant portal on our website. Updates will also be sent to the email address you provided during the application process."],
+        ["Can I defer my admission offer?", "Yes, deferrals are possible in certain cases. If you have been offered admission but need to defer, please contact the admissions office for further guidance and deadlines regarding the deferral process."],
+        ["How can I get in touch with the admissions office?", "You can reach the admissions office by phone at (123) 456-7890 or by email at admissions@university.edu. Our office hours are Monday to Friday, 9 AM to 5 PM."],
+        ["Is there housing available for new students?", "Yes, on-campus housing is available for new students. You can apply for housing once you have been admitted. Detailed information about housing options and fees can be found on our 'Student Housing' page."],
+    
+   
+        [
+            "Hi there!", "Hello! How do you feel today?"
+        ],
+        [
+            "How's everything?", "Everything's good! How do you feel right now?"
+        ],
+        [
+            "Hey there!", "Hi! How's your mood today?"
+        ],
+
+        [
+            "Thank you.", "You're welcome! I'm glad I could help."
+        ],
+        [
+            "Thanks!", "No problem at all! If you have any more questions, feel free to ask."
+        ],
+        [
+            "I appreciate it.", "I'm happy to assist! Don't hesitate to reach out if you need anything else."
+        ],
+        [
+            "Thanks for your help.", "My pleasure! I'm here whenever you need support."
+        ],
+        [
+            "Thank you for listening.", "Of course! I'm always here to listen and help."
+       ],
+        [
+            "Thanks for the advice.", "You're welcome! I hope it helps you feel better."
+       ],
+        [
+            "I really appreciate your support.", "I'm glad to hear that! I'm here for you anytime."
+       ],
+        [
+            "Thank you for understanding.", "It's my pleasure! If there's anything else, just let me know."
+       ],
+        [
+            "Thanks for your time.", "You're welcome! It was great talking with you."
+       ],
+        [
+            "Thank you for everything.", "You're very welcome! Remember, I'm here for you."
+       ],
+        [
+            "Feel free to ask.", "Absolutely! I'm here to help with anything you need."
+       ],
+        [
+            "Goodbye!", "Goodbye! Take care, and remember I'm just a message away if you need anything."
+       ],
+        [
+            "See you later!", "See you later! Don't hesitate to reach out if you have more questions."
+       ],
+        [
+            "Take care!", "You too! I'm always here if you want to talk."
+       ],
+        [
+            "Have a great day!", "Thank you! You too! If you need anything, just let me know."
+       ],
+        [
+            "Thanks, goodbye!", "You're welcome! Goodbye, and take care!"
+       ]
+        
+]

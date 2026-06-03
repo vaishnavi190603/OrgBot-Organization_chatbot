@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #1a2b3c;
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #ffffff;
+        }
+
+        .container {
+            max-width: 600px;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            padding: 20px;
+            box-sizing: border-box;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .logo {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 15px;
+        }
+
+        .logo img {
+            width: 100px;
+            height: auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        #chat-container {
+            margin-bottom: 20px;
+            overflow-y: auto;
+            max-height: 400px;
+            padding: 10px;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+            border: 1px solid #bdc3c7;
+        }
+
+        #user-input {
+            width: calc(100% - 80px);
+            padding: 12px;
+            border: 1px solid #bdc3c7;
+            border-radius: 20px;
+            margin-right: 10px;
+            box-sizing: border-box;
+        }
+
+        #send-button, #pdf-button {
+            padding: 12px 20px;
+            border: none;
+            color: #ffffff;
+            border-radius: 20px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            margin-top: 10px;
+        }
+
+        #send-button {
+            background-color: #28a745;
+        }
+
+        #send-button:hover {
+            background-color: #218838;
+        }
+
+        #pdf-button {
+            background-color: #007bff;
+        }
+
+        #pdf-button:hover {
+            background-color: #0056b3;
+        }
+
+        .user-message, .bot-message {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .user-message {
+            justify-content: flex-end;
+            color: #2c3e50;
+        }
+
+        .bot-message {
+            justify-content: flex-start;
+            color: #0a1f2c;
+        }
+
+        .message {
+            padding: 10px;
+            border-radius: 15px;
+            display: inline-block;
+            max-width: 80%;
+            word-wrap: break-word;
+        }
+
+        .user-message .message {
+            background-color: #dff9d8;
+            border-radius: 15px 15px 0 15px;
+        }
+
+        .bot-message .message {
+            background-color: #abafb1;
+            border-radius: 15px 15px 15px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <img src="static/logo.png" alt="Chatbot Logo"> 
+        </div>
+        <h1>Organizational Chatbot</h1>
+        <div id="chat-container"></div>
+        <form id="user-input-form">
+            <input type="text" id="user-input" placeholder="Type your message..." required>
+            <button type="submit" id="send-button">Send</button>
+        </form>
+        <button id="pdf-button">Upload PDF</button>
+    </div>
+
+    <script>
+        document.getElementById('user-input-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            sendMessage();
+        });
+
+        document.getElementById("pdf-button").addEventListener("click", function() {
+            window.location.href = "pdf.html";
+        });
+
+        function sendMessage() {
+            const userInput = document.getElementById('user-input').value;
+            const chatContainer = document.getElementById('chat-container');
+            
+            chatContainer.innerHTML += `<div class="user-message"><strong>You:</strong> <span class="message">${userInput}</span></div>`;
+
+            fetch('/mybot', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ 'data': userInput }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                const botResponse = data;
+                chatContainer.innerHTML += `<div class="bot-message"><strong>Bot:</strong> <span class="message">${botResponse}</span></div>`;
+                chatContainer.scrollTop = chatContainer.scrollHeight;
+            })
+            .catch(error => console.error('Error:', error));
+            
+            document.getElementById('user-input').value = '';
+        }
+    </script>
+</body>
+</html>
